@@ -52,9 +52,9 @@ flowchart TD
 ```
 aws-lambda-s3-automation/
 │-- lambda/
-│   └─ index.py          # Código da função Lambda
-│-- templates/           # Templates auxiliares (opcional)
-│-- images/              # Evidências em prints
+│   └─ index.py          
+│-- templates/           
+│-- images/             
 │   ├─ 01-s3-bucket-list.png
 │   ├─ 02-s3-event-notification.png
 │   ├─ 03-lambda-code-index.png
@@ -63,7 +63,7 @@ aws-lambda-s3-automation/
 │   ├─ 06-lambda-trigger-s3.png
 │   ├─ 07-s3-upload-success.png
 │   └─ 08-cloudwatch-log-success.png
-│-- README.md            # Documentação principal
+│-- README.md           
 ```
 
 ---
