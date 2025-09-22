@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# VSCode / IDE configs
+.vscode/
+.idea/
+
+# Mac / Windows system files
+.DS_Store
+Thumbs.db
+
+# AWS SAM / Lambda build artifacts
+.aws-sam/
+.template.yaml
+*.zip
+
+# Logs
+*.log
+
+# Python cache
+*.egg-info/
+.eggs/
+dist/
+build/

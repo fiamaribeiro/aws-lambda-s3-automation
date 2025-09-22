@@ -1,0 +1,49 @@
+
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Serverless app - S3 triggers Lambda on object-created
+
+Parameters:
+  BucketName:
+    Type: String
+    Description: Name of the source S3 bucket
+
+Globals:
+  Function:
+    Runtime: python3.11
+    Timeout: 30
+    MemorySize: 256
+
+Resources:
+  ProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lambda-s3-automation
+      Handler: index.lambda_handler
+      CodeUri: lambda/
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            - Effect: Allow
+              Action:
+                - s3:GetObject
+                - s3:ListBucket
+              Resource:
+                - !Sub "arn:aws:s3:::${BucketName}"
+                - !Sub "arn:aws:s3:::${BucketName}/*"
+      Events:
+        S3CreateEvent:
+          Type: S3
+          Properties:
+            Bucket: !Ref SourceBucket
+            Events: s3:ObjectCreated:*
+  SourceBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+
+Outputs:
+  BucketOut:
+    Value: !Ref SourceBucket
+  FunctionOut:
+    Value: !Ref ProcessorFunction
